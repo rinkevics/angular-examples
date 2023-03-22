@@ -1,6 +1,27 @@
-<p>shipping works!</p>
+<p [style.backgroundColor]="ship_color"
+[style.width]="width"  >shipping works!</p>
+
+<input type="text" [(ngModel)]="userName">
+<p>Hello {{userName}}!</p>
+
+
+<input type="text" id="name" [formControl]="favoriteColorControl">
+
+<button (click)="share()" >
+  add
+</button>
+
+<div *ngIf="favoriteColorControl.invalid && (favoriteColorControl.dirty || favoriteColorControl.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="favoriteColorControl.errors?.['required']">
+    Name is required.
+  </div>
+</div>
+
 
 <div class="shipping-item" *ngFor="let shipping of shippingCosts | async">
   <span>{{ shipping.type }}</span>
   <span>{{ shipping.price | currency }}</span>
 </div>
+
